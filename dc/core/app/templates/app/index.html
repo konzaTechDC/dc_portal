@@ -32,6 +32,37 @@
 <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
+
+<style>
+	
+	
+	.dropdown {
+	  position: relative;
+	  display: inline-block;
+	}
+	
+	.dropdown-content {
+	  display: none;
+	  position: absolute;
+	  background-color: #181818;
+	  min-width: 160px;
+	  z-index: 1;
+	}
+	
+	.dropdown-content a {
+	  color: black;
+	  padding: 12px 16px;
+	  text-decoration: none;
+	  display: block;
+	}
+	
+	.dropdown-content a:hover {background-color: #ddd;}
+	
+	.dropdown:hover .dropdown-content {display: block;}
+	
+	.dropdown:hover .dropbtn {background-color: #3e8e41;}
+	</style>
+
 </head>
 <body>
 	<header id="home"class="section">
@@ -55,7 +86,18 @@
                               <ul class="menu-area-main">
                                  <li><a href="{% url 'index' %}">Home</a></li>
                                  <li><a href="#about">About</a></li>
-                                 <li><a href="#service">Service</a></li>
+								 <li>
+									<div class="dropdown">
+										<a class="dropbtn" style="color: white;">Services 
+										  <i class="fa fa-caret-down"></i>
+										</a>
+										<div class="dropdown-content">
+										  <a href="#">Link 1</a>
+										  <a href="#">Link 2</a>
+										  <a href="#">Link 3</a>
+										</div>
+									  </div> 
+								 </li>
                                  <li><a href="#testimonial">Testimonial</a></li>
                                  <li><a href="{% url 'app:contact-us' %}">Contact Us</a></li>
                               </ul>
