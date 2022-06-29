@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="content" class="main-content">
+    <div class="container">
+        <div class="row" id="cancel-row">
+
+            <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+
+    
+                        <form action="#" method="post" class="form-horizontal">
+                            {% csrf_token %}
+                            <h4>Complete the form below.</h4>
+                            <hr />
+                            <div class="form-group">
+                                <label for="id_username" class="col-md-2 control-label">
+                                    {{ form.name.label_tag }}</label>
+                                <div class="col-md-10">
+                                    {{ form.name }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="col-md-2 control-label">
+                                    {{ form.email.label_tag }}</label>
+                                <div class="col-md-10">
+                                    {{ form.email }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="number" class="col-md-2 control-label">
+                                    {{ form.number.label_tag }}</label>
+                                <div class="col-md-10">
+                                    {{ form.phone }}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="col-md-2 control-label">
+                                    {{ form.message.label_tag }}</label>
+                                <div class="col-md-10">
+                                    {{ form.message }}
+                                </div>
+                            </div>
+                            
+                            <!--
+                            <div class="form-group">
+                                <label for="date_of_delivery" class="col-md-2 control-label">{{ form.signature.label_tag }}</label>
+                                <div class="col-md-10">
+                                    {{ form.signature }}
+                                </div>
+                            </div>   
+                            -->
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="hidden" name="next" value="/" />
+                                    <input type="submit" class="btn btn-success btn-lg" value="Save"/>
+                                </div>
+                            </div>
+                            {% if form.errors %}
+                            {% for error in form.errors %}
+                            <p class="validation-summary-errors">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </form>
+                    </section>
+                
+                            </div>                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-8">
+
+            </div>
+                <div class="col-md-4">
+                    <section id="socialLoginForm"></section>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

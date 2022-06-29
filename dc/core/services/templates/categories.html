@@ -1,0 +1,129 @@
+{% extends "services_base.html" %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block topcontent %}
+{% if level == 1%}
+<div class="bannen_inner">
+      <div class="container">
+          <div class="row marginii">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <h1 class="web_text" style="padding-top: 60px;"><span class="color">{{ service.name }}</span></h1>
+                  <p class="donec_text"> {{ service.description }}</p>
+                   </div>
+           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+           <div class="img-box">
+              <figure><img src="{{ service.image.url }}" alt="img" style="max-width: 100%;"></figure>
+           </div>
+      </div>
+     </div>
+     <div class="emaim-bt">
+         <div class="col-md-9 margin-0">
+      <div class="input-group mb-3 margin-top-20">
+          <input type="text" class="form-control" placeholder="Enter domain name here">
+      <div class="input-group-append">
+          <button class="search_bt" type="Subscribe"><a href="#">Search</a></button>  
+      </div>
+      </div>           
+  </div>
+ </div>
+</div>
+</div>
+{% else %}
+<div class="bannen_inner">
+    <div class="container">
+        <div class="row marginii">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h1 class="web_text" style="padding-top: 60px;"><span class="color">{{ service.service_category }}</span></h1>
+                <p class="donec_text"> {{ service.description }}</p>
+                 </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+         <div class="img-box">
+            <figure><img src="{{ service.image_file.url }}" alt="img" style="max-width: 100%;"></figure>
+         </div>
+    </div>
+   </div>
+   <div class="emaim-bt">
+       <div class="col-md-9 margin-0">
+    <div class="input-group mb-3 margin-top-20">
+        <input type="text" class="form-control" placeholder="Enter domain name here">
+    <div class="input-group-append">
+        <button class="search_bt" type="Subscribe"><a href="#">Search</a></button>  
+    </div>
+    </div>           
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock %}
+{% block bottomcontent %}
+{% if level == 1%}
+<div class="choose_section_2">
+    	<div class="container">
+            <div class="row">
+                <h1 class="web_text" style="padding-top: 60px;"><span class="color">{{ service.name }}  Categories </span></h1>
+            </div>
+    	    <div class="row"> 
+                {% for cat in category %}
+    		    <div class="col-sm-4">
+    			    <div class="about_inner">
+    				    <div class="icon"><a href="#"><img src="{% static 'images/icon-1.png' %}"></a></div>
+    				    <h2 class="totaly_text">{{forloop.counter}}. {{ cat.service_category }}</h2>
+    				    <p class="making"> {{ cat.description }}</p>
+    			    </div>
+					<div>
+						<button class="read_more"><a href="{% url 'services:category' cat.id %}">Read More</a></button>
+					</div>  
+    		    </div>
+                {% endfor %}
+    		    
+    	    </div>    		
+    	</div>
+</div>
+{% else %}
+<div class="choose_section_2">
+    <div class="container">
+        <div class="row">
+            <h1 class="web_text" style="padding-top: 60px;"><span class="color">{{ service.service_category }}  Flavours </span></h1>
+        </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table">
+                          <thead>
+                            <tr style="background-color: green;">
+                              <th scope="col" style="color: white;">No.</th>
+                              <th scope="col" style="color: white;">Type</th>
+                              <th scope="col" style="color: white;">CPU</th>
+                              <th scope="col" style="color: white;">Memory</th>
+                              <th scope="col" style="color: white;">Storage</th>
+                              <th scope="col" style="color: white;">Bandwidth</th>
+                              <th scope="col" style="color: white;">Price</th>
+                              <th scope="col" style="color: white;">Add to Cart</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                                {% for cat in category %}
+                                <tr scope="row">
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{cat.service_type}}</td>
+                                    <td><b>{{cat.cpu}}</b> {{cat.cpu_type}}</td>
+                                    <td><b>{{cat.memory}}</b> {{cat.memory_unit}}</td>
+                                    <td><b>{{cat.disk}}</b> {{cat.disk_type}}</td>
+                                    <td>{{ cat.bandwidth }}</td>
+                                    <td><b>${{cat.cost}}/</b> {{cat.payment_period}}</td>
+                                    <td><button class="read_more"><a href="{% url 'services:flavours' cat.id %}">Add to Cart</a></button></td>
+                                </tr>
+                                {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            
+        </div>    		
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+   
